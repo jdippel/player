@@ -7,7 +7,7 @@ A chess player owns a finite set of pieces and each piece can move to locations.
 ### What is this repository for? ###
 
 * a library for chess players.
-* Version 1.4.0
+* Version 1.4.2
 
 ### How do I get set up? ###
 
