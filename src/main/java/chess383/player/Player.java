@@ -36,6 +36,8 @@ import chess383.piece.concretion.bishop.Bishop;
 import chess383.piece.concretion.king.InitialKing;
 import chess383.piece.concretion.king.MovedKing;
 import chess383.piece.concretion.knight.Knight;
+import chess383.piece.concretion.pawn.WhitePawn;
+import chess383.piece.concretion.pawn.BlackPawn;
 import chess383.piece.concretion.pawn.InitialBlackPawn;
 import chess383.piece.concretion.pawn.InitialWhitePawn;
 import chess383.piece.concretion.queen.Queen;
@@ -181,7 +183,12 @@ public class Player {
         
         return this;
     }
-    
+
+    public Character getPawnLetterForForsythEdwardsNotation() {
+
+        return ( getColour() == ColorEnum.WHITE ) ? WhitePawn.getStaticForsythEdwardsNotation() : BlackPawn.getStaticForsythEdwardsNotation();
+    }
+
     /** ---------  Inheritance from Object  ------------------- */
     
     @Override
@@ -201,29 +208,17 @@ public class Player {
         }
         return description;
     }
-    
+
+    private boolean isMeaningfullyEquivalent( Player player ) {
+        return getColour() == player.getColour()
+                && getNumberOfPieces() == player.getNumberOfPieces()
+                && player.getAllPieces().stream().allMatch( piece -> piece.equals( getPiece( piece.getLocation() )));
+    }
+
     @Override
     public boolean equals( Object object ) {
-        if( object instanceof Player ) {
-            Player player = ( Player )object;
-            if( getColour() == player.getColour() && getNumberOfPieces() == player.getNumberOfPieces() ) {
-                for( Piece piece : player.getAllPieces() ) {
-                    if( piece.equals( getPiece( piece.getLocation() ) )) {
-                        // true
-                    }
-                    else {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
+        return ( object instanceof Player )
+                && isMeaningfullyEquivalent( ( Player )object );
     }
     
     @Override

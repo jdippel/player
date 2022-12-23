@@ -37,7 +37,7 @@ import chess383.piece.concretion.rook.Rook;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   September 2020
+ * @version   November 2022
  *
  */
 @DisplayName("the public method boolean equals( ) for class Player is tested")
@@ -51,7 +51,7 @@ public class Player_Equals {
         final String KING_POSITION = "f6";
         final String QUEEN_POSITION = "g7";
         
-        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) ).equals( Player.create( COLOR, Arrays.asList( Queen.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ) ) )  )
+        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) )).equals( Player.create( COLOR, Arrays.asList( Queen.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ))))
                   .as( "the created player is equal to a play with another order of pieces" )
                   .isTrue();
     }
@@ -65,7 +65,7 @@ public class Player_Equals {
         final String KING_POSITION = "f6";
         final String QUEEN_POSITION = "g7";
         
-        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) ).equals( new String( "Hello" ) ) )
+        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) )).equals( "Hello" ) )
                   .as( "the created player is not equal to another object instance" )
                   .isFalse();
     }
@@ -78,7 +78,7 @@ public class Player_Equals {
         final String KING_POSITION = "f6";
         final String QUEEN_POSITION = "g7";
         
-        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) ).equals( Player.create( COLOR, Arrays.asList( Rook.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ) ) )  )
+        assertThat( Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) )).equals( Player.create( COLOR, Arrays.asList( Rook.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ))))
                   .as( String.format( "the created player are not equal because on %s the are different piece types located", QUEEN_POSITION ) )
                   .isFalse();
     }
@@ -90,7 +90,7 @@ public class Player_Equals {
         final String KING_POSITION = "f6";
         final String QUEEN_POSITION = "g7";
         
-        assertThat( Player.create( ColorEnum.WHITE, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) ).equals( Player.create( ColorEnum.BLACK, Arrays.asList( Queen.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ) ) )  )
+        assertThat( Player.create( ColorEnum.WHITE, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) )).equals( Player.create( ColorEnum.BLACK, Arrays.asList( Queen.create( QUEEN_POSITION ), MovedKing.create( KING_POSITION ) ))))
                   .as( "the created player is equal to a play with another order of pieces" )
                   .isFalse();
     }

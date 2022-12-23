@@ -22,6 +22,7 @@ package chess383.player;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ import chess383.piece.concretion.king.InitialKing;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   September 2020
+ * @version   November 2022
  *
  */
 @DisplayName("the public method ColorEnum getColour( ) for class Player is tested")
@@ -48,7 +49,7 @@ public class Player_GetColour {
         final ColorEnum COLOR = ColorEnum.WHITE;
         final String INITIAL_KING_POSITION = "e1";
         
-        assertThat( Player.create( COLOR, Arrays.asList( InitialKing.create( INITIAL_KING_POSITION ) ) ).getColour() )
+        assertThat( Player.create( COLOR, List.of( InitialKing.create(INITIAL_KING_POSITION ) )).getColour() )
                   .as( "the created player holds the information about colour" )
                   .isEqualTo( COLOR );
     }

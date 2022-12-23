@@ -48,7 +48,7 @@ import chess383.piece.concretion.rook.Rook;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   July 2020
+ * @version   November 2022
  *
  */
 @DisplayName("the public method List<String> getPieceTypeLocations() for class Player is tested")
@@ -76,7 +76,7 @@ public class Player_GetPieceTypeLocations {
     public static Stream<Arguments> fenAndListAndListProvider() {
         return Stream.of(
             
-            Arguments.of( 'K', Arrays.asList( MovedKing.create( "e2" ), Queen.create( "d1" ) ), Arrays.asList( "e2" ))
+            Arguments.of( 'K', Arrays.asList( MovedKing.create( "e2" ), Queen.create( "d1" ) ), List.of( "e2" ))
           , Arguments.of( 'n', Arrays.asList(
                     InitialKing.create( "e8" ), Queen.create( "d8" ), Rook.create( "a8" ), Rook.create( "h8" ),
                     Knight.create( "b8" ), Knight.create( "g8" ), Bishop.create( "c8" ), Bishop.create( "f8" ),

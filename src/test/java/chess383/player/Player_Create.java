@@ -22,6 +22,7 @@ package chess383.player;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ import chess383.piece.concretion.queen.Queen;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   September 2020
+ * @version   November 2022
  *
  */
 @DisplayName("the public static factory method Player create( ) for class Player is tested")
@@ -50,7 +51,7 @@ public class Player_Create {
         final ColorEnum COLOR = ColorEnum.WHITE;
         final String INITIAL_KING_POSITION = "e1";
         
-        assertThat( Player.create( COLOR, Arrays.asList( InitialKing.create( INITIAL_KING_POSITION ) ) ).getPiece( INITIAL_KING_POSITION ).isKing() )
+        assertThat( Player.create( COLOR, List.of( InitialKing.create(INITIAL_KING_POSITION ) )).getPiece( INITIAL_KING_POSITION ).isKing() )
                   .as( "the created player holds the information about the piece type" )
                   .isTrue();
     }
@@ -63,7 +64,7 @@ public class Player_Create {
         final String KING_POSITION = "f6";
         final String QUEEN_POSITION = "g7";
         
-        Player createdPlayer = Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) );
+        Player createdPlayer = Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ));
         
         assertThat( createdPlayer.getPiece( KING_POSITION ).isKing() )
                   .as( "the created player holds the information about the defined piece type - king" )

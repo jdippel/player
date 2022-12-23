@@ -22,6 +22,7 @@ package chess383.player;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ import chess383.piece.concretion.queen.Queen;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   November 2019
+ * @version   November 2022
  *
  */
 @DisplayName("the public method String toString( ) for class Player is tested")
@@ -49,7 +50,7 @@ public class Player_ToString {
         final String INITIAL_KING_POSITION = "e1";
         final String EXPECTED_DESCRIPTION = String.format( "%s%n( %s, initial king )%n", ColorEnum.WHITE, INITIAL_KING_POSITION );
         
-        Player player = Player.create( ColorEnum.WHITE, Arrays.asList( InitialKing.create( INITIAL_KING_POSITION ) ) );
+        Player player = Player.create( ColorEnum.WHITE, List.of( InitialKing.create(INITIAL_KING_POSITION) ));
         
         assertThat( player.toString() )
                   .as( "the string representation should match" )

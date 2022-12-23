@@ -2,7 +2,7 @@
  *  Player_Remove.java
  *
  *  chess383 is a collection of chess related utilities.
- *  Copyright (C) 2020 Jörg Dippel
+ *  Copyright (C) 2020, 2021 Jörg Dippel
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ import chess383.piece.concretion.queen.Queen;
  * </p>
  *
  * @author    Jörg Dippel
- * @version   September 2020
+ * @version   September 2021
  *
  */
 @DisplayName("the public method Player remove( ) for class Player is tested")
@@ -82,6 +82,39 @@ public class Player_Remove {
         assertThat( player.remove( EMPTY_LOCATION ) )
                   .as( "if remove() is called for an empty location nothing is removed" )
                   .isEqualTo( player );
+    }
+    
+    @Test
+    @DisplayName("remove(): a piece is removed and the number of pieces is decremented")
+    public void remove_APieceIsRemoved_ThenTheNumberOfPiecesIsDecremented() {
+        
+        final ColorEnum COLOR = ColorEnum.WHITE;
+        final String KING_POSITION = "e2";
+        final String QUEEN_POSITION = "g7";
+        
+        Player player = Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) );
+        int numberOfPieces = player.getNumberOfPieces();
+        
+        assertThat( player.remove( QUEEN_POSITION ).getNumberOfPieces() )
+                  .as( "removing a piece from a player should decrement the number of pieces if valid" )
+                  .isEqualTo( numberOfPieces - 1 ) ;
+    }
+    
+    @Test
+    @DisplayName("remove(): an invalid piece is removed and the number of pieces remains the same")
+    public void remove_AnInvalidPieceIsRemoved_ThenTheNumberOfPiecesRemains() {
+        
+        final ColorEnum COLOR = ColorEnum.WHITE;
+        final String KING_POSITION = "e2";
+        final String QUEEN_POSITION = "g7";
+        final String OTHER_LOCATION = "f6";
+        
+        Player player = Player.create( COLOR, Arrays.asList( MovedKing.create( KING_POSITION ), Queen.create( QUEEN_POSITION ) ) );
+        int numberOfPieces = player.getNumberOfPieces();
+        
+        assertThat( player.remove( OTHER_LOCATION ).getNumberOfPieces() )
+                  .as( "removing a piece from a player should decrement the number of pieces if valid" )
+                  .isEqualTo( numberOfPieces ) ;
     }
 }
 
